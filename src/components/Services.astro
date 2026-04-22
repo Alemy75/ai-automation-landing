@@ -1,0 +1,55 @@
+---
+// src/components/Services.astro
+import { Globe, Bot, LayoutDashboard, Settings2 } from 'lucide-astro';
+import { services } from '../data/services';
+
+const iconMap: Record<string, any> = { Globe, Bot, LayoutDashboard, Settings2 };
+
+const accentBg: Record<string, string> = {
+  primary: 'rgba(99,102,241,0.12)',
+  accent: 'rgba(16,185,129,0.12)',
+  violet: 'rgba(139,92,246,0.12)',
+};
+const borderColor: Record<string, string> = {
+  primary: 'rgba(99,102,241,0.25)',
+  accent: 'rgba(16,185,129,0.25)',
+  violet: 'rgba(139,92,246,0.25)',
+};
+const iconColor: Record<string, string> = {
+  primary: 'var(--color-primary)',
+  accent: 'var(--color-accent)',
+  violet: 'var(--color-violet)',
+};
+---
+
+<section id="services" class="py-24" style="background: var(--color-bg-surface);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="mb-14 reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--color-primary);">Услуги</p>
+      <h2 class="text-3xl sm:text-4xl font-black" style="color: var(--color-text);">Что мы разрабатываем</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {services.map(service => {
+        const IconComponent = iconMap[service.icon];
+        return (
+          <div
+            class="reveal rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
+            style={`background: var(--color-bg-card); border: 1px solid ${borderColor[service.accent]};`}
+          >
+            <div
+              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+              style={`background: ${accentBg[service.accent]};`}
+            >
+              <IconComponent size={22} style={`color: ${iconColor[service.accent]};`} />
+            </div>
+            <h3 class="text-base font-bold mb-2" style="color: var(--color-text);">{service.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">{service.description}</p>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,42 @@
+---
+// src/components/Footer.astro
+const year = new Date().getFullYear();
+const nav = [
+  { label: 'Услуги', href: '#services' },
+  { label: 'Кейсы', href: '#cases' },
+  { label: 'Почему мы', href: '#why-us' },
+  { label: 'FAQ', href: '#faq' },
+  { label: 'Контакты', href: '#contact' },
+];
+---
+
+<footer style="background: var(--color-bg-deep); border-top: 1px solid rgba(255,255,255,0.06);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div>
+        <a href="/" class="text-2xl font-black tracking-wider">
+          <span style="color: var(--color-primary);">AI</span><span style="color: var(--color-accent);">BOOST</span>
+        </a>
+        <p class="mt-2 text-sm" style="color: var(--color-text-muted);">AI-автоматизация для малого и среднего бизнеса</p>
+      </div>
+      <nav class="flex flex-wrap gap-x-6 gap-y-2">
+        {nav.map(item => (
+          <a href={item.href} class="footer-link text-sm transition-colors duration-200"
+            style="color: var(--color-text-muted);">{item.label}</a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
+      style="border-top: 1px solid rgba(255,255,255,0.06);">
+      <p class="text-xs" style="color: var(--color-text-muted);">© {year} AI Boost. Все права защищены.</p>
+      <p class="text-xs" style="color: var(--color-text-muted);">Разработано с AI</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer-link:hover { color: var(--color-text) !important; }
+</style>

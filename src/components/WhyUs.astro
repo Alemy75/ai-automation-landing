@@ -1,0 +1,70 @@
+---
+// src/components/WhyUs.astro
+const benefits = [
+  {
+    iconPath: '<rect width="16" height="16" x="4" y="4" rx="2"/><rect width="6" height="6" x="9" y="9" rx="1"/><path d="M15 2v2M15 20v2M2 15h2M2 9h2M20 15h2M20 9h2M9 2v2M9 20v2"/>',
+    title: 'AI в каждом проекте',
+    desc: 'Используем AI-инструменты на каждом этапе — от дизайна до тестирования. Это в 3–5 раз быстрее стандартной разработки.',
+    accent: 'primary',
+  },
+  {
+    iconPath: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>',
+    title: 'Запуск от 2 недель',
+    desc: 'Первый рабочий прототип — уже через 5–7 дней. Короткие спринты, быстрая обратная связь.',
+    accent: 'accent',
+  },
+  {
+    iconPath: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+    title: 'Фиксированная цена',
+    desc: 'Стоимость и сроки фиксируются в договоре до начала работ. Без сюрпризов в конце.',
+    accent: 'primary',
+  },
+  {
+    iconPath: '<path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"/>',
+    title: 'Поддержка 24/7',
+    desc: 'После запуска не исчезаем. 3 месяца гарантийного сопровождения, Telegram всегда открыт.',
+    accent: 'accent',
+  },
+];
+
+const accentBg: Record<string, string> = {
+  primary: 'rgba(99,102,241,0.12)',
+  accent: 'rgba(16,185,129,0.12)',
+};
+const iconColor: Record<string, string> = {
+  primary: 'var(--color-primary)',
+  accent: 'var(--color-accent)',
+};
+const borderColor: Record<string, string> = {
+  primary: 'rgba(99,102,241,0.2)',
+  accent: 'rgba(16,185,129,0.2)',
+};
+---
+
+<section id="why-us" class="py-24" style="background: var(--color-bg-deep);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="mb-14 reveal">
+      <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--color-accent);">Преимущества</p>
+      <h2 class="text-3xl sm:text-4xl font-black" style="color: var(--color-text);">Почему AI Boost?</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {benefits.map(b => (
+        <div class="reveal p-6 rounded-2xl flex gap-5"
+          style={`background: var(--color-bg-card); border: 1px solid ${borderColor[b.accent]};`}>
+          <div class="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center" style={`background: ${accentBg[b.accent]};`}>
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+              stroke={iconColor[b.accent]} stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              set:html={b.iconPath} />
+          </div>
+          <div>
+            <h3 class="text-base font-bold mb-1" style="color: var(--color-text);">{b.title}</h3>
+            <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">{b.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
