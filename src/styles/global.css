@@ -29,6 +29,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
+html { overflow-x: clip; }
 body {
   background: var(--bg);
   color: var(--ink);
@@ -529,6 +530,38 @@ footer {
   mix-blend-mode: multiply; opacity: 0; transition: opacity .4s;
 }
 @media (hover: hover) { .spotlight { opacity: 1; } }
+
+/* ————— MOBILE OVERFLOW FIXES ————— */
+@media (max-width: 480px) {
+  h1.hero-title {
+    font-size: clamp(48px, 14vw, 100px);
+    word-break: break-word;
+  }
+  .section-title {
+    font-size: clamp(32px, 9vw, 60px);
+  }
+  .process-title {
+    font-size: clamp(26px, 7vw, 44px);
+  }
+  .cta-final h2 {
+    font-size: clamp(44px, 13vw, 100px);
+  }
+  .section-head {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .stat-num {
+    font-size: 36px;
+  }
+  .compare-row > div {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+}
 
 /* ————— REDUCED MOTION ————— */
 @media (prefers-reduced-motion: reduce) {
