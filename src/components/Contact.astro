@@ -23,12 +23,7 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contact-form" action="https://formsubmit.co/is.alemy@yandex.ru" method="POST">
-        <input type="hidden" name="_subject" value="Новая заявка с лендинга AI Boost">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="#contact">
-        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
-
+      <form class="contact-form" id="contact-form" novalidate>
         <div class="form-row">
           <label class="field">
             <span class="field-label">01 / Имя</span>
@@ -50,7 +45,7 @@
 
         <div class="form-submit-row">
           <label class="agree">
-            <input type="checkbox" required>
+            <input type="checkbox" id="agree-check" required>
             <span>Согласен на&nbsp;<a href="#">обработку персональных данных</a></span>
           </label>
           <button type="submit" class="btn btn-primary form-submit">Отправить заявку <span class="arrow">→</span></button>
@@ -66,25 +61,39 @@
 </section>
 
 <script>
+  import emailjs from '@emailjs/browser';
+
   const form = document.getElementById('contact-form') as HTMLFormElement | null;
   if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const btn = form.querySelector('.form-submit') as HTMLButtonElement;
       const success = form.querySelector('.form-success') as HTMLElement;
+      const agree = document.getElementById('agree-check') as HTMLInputElement;
+
+      const name    = (form.elements.namedItem('name')     as HTMLInputElement).value.trim();
+      const contact = (form.elements.namedItem('contact')  as HTMLInputElement).value.trim();
+      const business= (form.elements.namedItem('business') as HTMLInputElement).value.trim();
+      const task    = (form.elements.namedItem('task')     as HTMLTextAreaElement).value.trim();
+
+      if (!name || !contact || !task || !agree.checked) return;
+
       const originalText = btn.innerHTML;
       btn.innerHTML = 'Отправка…';
       btn.disabled = true;
+
       try {
-        const data = new FormData(form);
-        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
-        if (res.ok) {
-          form.querySelectorAll<HTMLElement>('.form-row, .field, .form-submit-row').forEach(el => el.style.display = 'none');
-          success.hidden = false;
-        } else {
-          throw new Error('send failed');
-        }
-      } catch {
+        await emailjs.send(
+          import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+          import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+          { from_name: name, contact, business, message: task },
+          { publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY }
+        );
+        form.querySelectorAll<HTMLElement>('.form-row, .field, .form-submit-row').forEach(el => el.style.display = 'none');
+        success.hidden = false;
+      } catch (err) {
+        console.error('[EmailJS]', err);
         btn.innerHTML = 'Ошибка. Пишите в Telegram';
         btn.disabled = false;
         setTimeout(() => { btn.innerHTML = originalText; }, 3000);
