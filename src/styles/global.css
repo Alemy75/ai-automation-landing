@@ -224,9 +224,16 @@ h1.hero-title .outline {
 /* ————— SERVICES ————— */
 .services {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-  border-top: 1px solid var(--line); border-left: 1px solid var(--line);
 }
-@media (max-width: 900px) { .services { grid-template-columns: 1fr; } }
+/* Desktop: outer top/left borders per-item so they animate in with cards */
+@media (min-width: 901px) {
+  .service:nth-child(-n+3) { border-top: 1px solid var(--line); }
+  .service:nth-child(3n+1) { border-left: 1px solid var(--line); }
+}
+@media (max-width: 900px) {
+  .services { grid-template-columns: 1fr; }
+  .service { border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+}
 .service {
   border-right: 1px solid var(--line); border-bottom: 1px solid var(--line);
   padding: 32px;
@@ -324,8 +331,17 @@ h1.hero-title .outline {
 }
 
 /* ————— WHY ————— */
-.why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--ink); border-left: 1px solid var(--ink); }
-@media (max-width: 900px) { .why { grid-template-columns: repeat(2, 1fr); } }
+.why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+/* Desktop: outer top/left borders per-item so they animate in with cards */
+@media (min-width: 901px) {
+  .why-item:nth-child(-n+4) { border-top: 1px solid var(--ink); }
+  .why-item:nth-child(4n+1) { border-left: 1px solid var(--ink); }
+}
+@media (max-width: 900px) {
+  .why { grid-template-columns: repeat(2, 1fr); }
+  .why-item:nth-child(-n+2) { border-top: 1px solid var(--ink); }
+  .why-item:nth-child(2n+1) { border-left: 1px solid var(--ink); }
+}
 .why-item {
   border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
   padding: 28px; min-height: 220px;
