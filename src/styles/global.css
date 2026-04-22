@@ -345,6 +345,7 @@ h1.hero-title .outline {
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   border-radius: 24px;
+  border: 1.5px solid var(--ink);
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -354,9 +355,6 @@ h1.hero-title .outline {
   display: grid;
   grid-template-columns: 180px 1fr 1fr;
   min-width: 520px;
-  border: 1.5px solid var(--ink);
-  border-radius: 24px;
-  overflow: hidden;
   background: var(--card);
 }
 /* Строки — display:contents, чтобы ячейки попали в единую grid */
