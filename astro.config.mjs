@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://yourdomain.ru',
+  site: 'https://boost-by-ai.ru',
   output: 'static',
   integrations: [sitemap()],
   vite: { plugins: [tailwindcss()] },
