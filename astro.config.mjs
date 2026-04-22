@@ -4,10 +4,13 @@ import node from '@astrojs/node';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+const isGhPages = process.env.GITHUB_PAGES === 'true';
+
 export default defineConfig({
-  site: 'https://yourdomain.com',
+  site: isGhPages ? 'https://alemy75.github.io' : 'https://yourdomain.com',
+  base: isGhPages ? '/ai-automation-landing' : undefined,
   output: 'static',
-  adapter: node({ mode: 'standalone' }),
+  ...(isGhPages ? {} : { adapter: node({ mode: 'standalone' }) }),
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],

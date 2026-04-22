@@ -1,9 +1,17 @@
 // src/pages/api/contact.ts
-export const prerender = false;
+export const prerender = process.env.GITHUB_PAGES === 'true';
 
 import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { validateContactForm } from '../../lib/contact-validator';
+
+// Required so Astro can emit a static file when prerendering for GitHub Pages.
+// The form falls back to Telegram on static hosts.
+export const GET: APIRoute = () =>
+  new Response(JSON.stringify({ error: 'Contact form requires server deployment' }), {
+    status: 200,
+    headers: { 'Content-Type': 'application/json' },
+  });
 
 export const POST: APIRoute = async ({ request }) => {
   let body: unknown;
