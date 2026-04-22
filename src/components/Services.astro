@@ -1,55 +1,73 @@
 ---
 // src/components/Services.astro
-import { Globe, Bot, LayoutDashboard, Settings2 } from 'lucide-astro';
-import { services } from '../data/services';
-
-const iconMap: Record<string, any> = { Globe, Bot, LayoutDashboard, Settings2 };
-
-const accentBg: Record<string, string> = {
-  primary: 'rgba(99,102,241,0.12)',
-  accent: 'rgba(16,185,129,0.12)',
-  violet: 'rgba(139,92,246,0.12)',
-};
-const borderColor: Record<string, string> = {
-  primary: 'rgba(99,102,241,0.25)',
-  accent: 'rgba(16,185,129,0.25)',
-  violet: 'rgba(139,92,246,0.25)',
-};
-const iconColor: Record<string, string> = {
-  primary: 'var(--color-primary)',
-  accent: 'var(--color-accent)',
-  violet: 'var(--color-violet)',
-};
 ---
-
-<section id="services" class="py-24" style="background: var(--color-bg-surface);">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="mb-14 reveal">
-      <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--color-primary);">Услуги</p>
-      <h2 class="text-3xl sm:text-4xl font-black" style="color: var(--color-text);">Что мы разрабатываем</h2>
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <div class="section-eyebrow"><span class="num">01</span><span>УСЛУГИ</span></div>
+      <h2 class="section-title">Что&nbsp;мы<br/><em>автоматизируем</em></h2>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      {services.map(service => {
-        const IconComponent = iconMap[service.icon];
-        return (
-          <div
-            class="reveal rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1"
-            style={`background: var(--color-bg-card); border: 1px solid ${borderColor[service.accent]};`}
-          >
-            <div
-              class="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-              style={`background: ${accentBg[service.accent]};`}
-            >
-              <IconComponent size={22} style={`color: ${iconColor[service.accent]};`} />
-            </div>
-            <h3 class="text-base font-bold mb-2" style="color: var(--color-text);">{service.title}</h3>
-            <p class="text-sm leading-relaxed" style="color: var(--color-text-muted);">{service.description}</p>
-          </div>
-        );
-      })}
-    </div>
+    <div class="services reveal-stagger" data-reveal>
+      <div class="service">
+        <div class="service-num">01 / 06</div>
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="3"/><circle cx="8.5" cy="12" r="1"/><circle cx="15.5" cy="12" r="1"/><path d="M12 2v3"/></svg>
+        </div>
+        <h3 class="service-title">AI-бот для соцсетей</h3>
+        <p class="service-desc">Отвечает клиентам в Telegram, Instagram, WhatsApp 24/7. Понимает вопросы, записывает на&nbsp;услуги, пишет в&nbsp;CRM.</p>
+        <span class="service-tag">от 49 000 ₽</span>
+      </div>
 
+      <div class="service">
+        <div class="service-num">02 / 06</div>
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M19 11a7 7 0 0 1-14 0M12 18v4"/></svg>
+        </div>
+        <h3 class="service-title">Голосовой ассистент</h3>
+        <p class="service-desc">Принимает звонки, консультирует, записывает клиентов. Узнаёт голоса постоянных клиентов.</p>
+        <span class="service-tag">от 89 000 ₽</span>
+      </div>
+
+      <div class="service">
+        <div class="service-num">03 / 06</div>
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-9-9"/><path d="M21 3v6h-6"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3 class="service-title">Автоматизация CRM</h3>
+        <p class="service-desc">Связываем AmoCRM / Bitrix24 с&nbsp;мессенджерами, сайтом и&nbsp;телефонией. Всё в&nbsp;одном окне.</p>
+        <span class="service-tag">от 39 000 ₽</span>
+      </div>
+
+      <div class="service">
+        <div class="service-num">04 / 06</div>
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v6M16 4v6"/></svg>
+        </div>
+        <h3 class="service-title">AI-запись и&nbsp;расписание</h3>
+        <p class="service-desc">Клиент пишет «хочу в&nbsp;субботу» — бот подбирает слот, бронирует, напоминает за&nbsp;сутки.</p>
+        <span class="service-tag">от 29 000 ₽</span>
+      </div>
+
+      <div class="service">
+        <div class="service-num">05 / 06</div>
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v6H4zM4 14h16v6H4zM8 7h.01M8 17h.01"/></svg>
+        </div>
+        <h3 class="service-title">Интеграции и&nbsp;сценарии</h3>
+        <p class="service-desc">Подключим Google Sheets, 1С, YClients, IP-телефонию, Яндекс.Доставку и&nbsp;почти всё остальное.</p>
+        <span class="service-tag">индивидуально</span>
+      </div>
+
+      <div class="service">
+        <div class="service-num">06 / 06</div>
+        <div class="glyph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        </div>
+        <h3 class="service-title">Сопровождение 24/7</h3>
+        <p class="service-desc">Следим за&nbsp;работой бота, обучаем, адаптируем под&nbsp;новые услуги и&nbsp;акции.</p>
+        <span class="service-tag">9 000 ₽/мес</span>
+      </div>
+    </div>
   </div>
 </section>

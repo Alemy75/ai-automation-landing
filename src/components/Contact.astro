@@ -1,124 +1,94 @@
 ---
-// src/components/Contact.astro
-const TELEGRAM_URL = 'https://t.me/YOUR_USERNAME';
+// src/components/CtaFinal.astro
 ---
-
-<section id="contact" class="py-24" style="background: var(--color-bg-surface);">
-  <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="mb-10 reveal">
-      <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--color-accent);">Контакты</p>
-      <h2 class="text-3xl sm:text-4xl font-black mb-3" style="color: var(--color-text);">Обсудим ваш проект</h2>
-      <p class="text-base" style="color: var(--color-text-secondary);">Ответим в течение 1 часа в рабочее время</p>
-    </div>
-
-    <div class="reveal rounded-2xl p-8" style="background: var(--color-bg-card); border: 1px solid rgba(99,102,241,0.2);">
-
-      <div id="form-success" class="hidden mb-6 p-4 rounded-xl text-sm"
-        style="background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--color-accent);">
-        Заявка отправлена! Мы свяжемся с вами в ближайшее время.
-      </div>
-      <div id="form-error" class="hidden mb-6 p-4 rounded-xl text-sm"
-        style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #f87171;">
-      </div>
-
-      <form id="contact-form" class="flex flex-col gap-5" novalidate>
-
-        <div>
-          <label for="cf-name" class="block text-xs font-medium mb-1.5" style="color: var(--color-text-secondary);">Ваше имя</label>
-          <input type="text" id="cf-name" name="name" required placeholder="Иван Иванов"
-            class="w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors duration-200 cf-input"
-            style="background: var(--color-bg-deep); border: 1px solid rgba(255,255,255,0.1); color: var(--color-text);" />
-        </div>
-
-        <div>
-          <label for="cf-email" class="block text-xs font-medium mb-1.5" style="color: var(--color-text-secondary);">Email</label>
-          <input type="email" id="cf-email" name="email" required placeholder="ivan@company.ru"
-            class="w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors duration-200 cf-input"
-            style="background: var(--color-bg-deep); border: 1px solid rgba(255,255,255,0.1); color: var(--color-text);" />
-        </div>
-
-        <div>
-          <label for="cf-message" class="block text-xs font-medium mb-1.5" style="color: var(--color-text-secondary);">Опишите задачу</label>
-          <textarea id="cf-message" name="message" required rows="4"
-            placeholder="Расскажите о вашем бизнесе и что хотите автоматизировать..."
-            class="w-full px-4 py-3 rounded-xl text-sm outline-none transition-colors duration-200 resize-none cf-input"
-            style="background: var(--color-bg-deep); border: 1px solid rgba(255,255,255,0.1); color: var(--color-text);"></textarea>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-3">
-          <button type="submit" id="submit-btn"
-            class="flex-1 flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-[1.02] disabled:opacity-60 disabled:cursor-not-allowed"
-            style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-            <span id="submit-text">Отправить заявку</span>
-          </button>
-          <a href={TELEGRAM_URL} target="_blank" rel="noopener noreferrer"
-            class="flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl font-semibold text-sm text-white transition-all duration-200 hover:scale-[1.02]"
-            style="background: #0f9548;">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
-            Telegram
+<section class="cta-final" id="contact">
+  <div class="wrap">
+    <h2>Поехали<br/><em>запускать?</em></h2>
+    <div class="cta-final-grid">
+      <div class="cta-final-left">
+        <p class="cta-final-lede">30 минут разговора &mdash;&nbsp;и&nbsp;вы&nbsp;получите план автоматизации со&nbsp;сроками и&nbsp;сметой. Бесплатно.</p>
+        <div class="contact-alt">
+          <a class="contact-alt-item" href="https://t.me/boost_by_ai" target="_blank" rel="noopener noreferrer">
+            <span class="contact-alt-label">Telegram</span>
+            <span class="contact-alt-val">@boost_by_ai &rarr;</span>
+          </a>
+          <a class="contact-alt-item" href="tel:+79222645956">
+            <span class="contact-alt-label">Телефон</span>
+            <span class="contact-alt-val">+7 (922) 264-59-56</span>
+          </a>
+          <a class="contact-alt-item" href="mailto:is.alemy@yandex.ru">
+            <span class="contact-alt-label">Email</span>
+            <span class="contact-alt-val">is.alemy@yandex.ru</span>
           </a>
         </div>
+      </div>
 
+      <form class="contact-form" id="contact-form" action="https://formsubmit.co/is.alemy@yandex.ru" method="POST">
+        <input type="hidden" name="_subject" value="Новая заявка с лендинга AI Boost">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="#contact">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <div class="form-row">
+          <label class="field">
+            <span class="field-label">01 / Имя</span>
+            <input type="text" name="name" placeholder="Как к&nbsp;вам обращаться?" required>
+          </label>
+          <label class="field">
+            <span class="field-label">02 / Связь</span>
+            <input type="text" name="contact" placeholder="Email, Telegram или телефон" required>
+          </label>
+        </div>
+        <label class="field">
+          <span class="field-label">03 / Ниша / бизнес</span>
+          <input type="text" name="business" placeholder="Салон, ресторан, сервис…">
+        </label>
+        <label class="field">
+          <span class="field-label">04 / Задача</span>
+          <textarea name="task" rows="3" placeholder="Что хотите автоматизировать? Можно коротко." required></textarea>
+        </label>
+
+        <div class="form-submit-row">
+          <label class="agree">
+            <input type="checkbox" required>
+            <span>Согласен на&nbsp;<a href="#">обработку персональных данных</a></span>
+          </label>
+          <button type="submit" class="btn btn-primary form-submit">Отправить заявку <span class="arrow">→</span></button>
+        </div>
+
+        <div class="form-success" hidden>
+          <div class="form-success-title">Спасибо! Заявка отправлена.</div>
+          <div class="form-success-desc">Ответим в течение 2х часов в рабочее время.</div>
+        </div>
       </form>
     </div>
-
   </div>
 </section>
 
-<style>
-  .cf-input:focus { border-color: var(--color-primary) !important; }
-</style>
-
 <script>
-  import emailjs from '@emailjs/browser';
-  import { validateContactForm } from '../lib/contact-validator';
-
-  const form = document.getElementById('contact-form') as HTMLFormElement;
-  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
-  const submitText = document.getElementById('submit-text')!;
-  const successEl = document.getElementById('form-success')!;
-  const errorEl = document.getElementById('form-error')!;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    successEl.classList.add('hidden');
-    errorEl.classList.add('hidden');
-
-    const data = {
-      name: (form.elements.namedItem('name') as HTMLInputElement).value.trim(),
-      email: (form.elements.namedItem('email') as HTMLInputElement).value.trim(),
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim(),
-    };
-
-    const validation = validateContactForm(data);
-    if (!validation.valid) {
-      errorEl.textContent = validation.error ?? 'Ошибка валидации';
-      errorEl.classList.remove('hidden');
-      return;
-    }
-
-    submitBtn.disabled = true;
-    submitText.textContent = 'Отправляем...';
-
-    try {
-      await emailjs.send(
-        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
-        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
-        { from_name: data.name, from_email: data.email, message: data.message },
-        { publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY }
-      );
-      form.reset();
-      successEl.classList.remove('hidden');
-      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    } catch (err) {
-      console.error('[EmailJS] Error:', err);
-      errorEl.textContent = 'Ошибка отправки. Напишите нам в Telegram.';
-      errorEl.classList.remove('hidden');
-    } finally {
-      submitBtn.disabled = false;
-      submitText.textContent = 'Отправить заявку';
-    }
-  });
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = form.querySelector('.form-submit') as HTMLButtonElement;
+      const success = form.querySelector('.form-success') as HTMLElement;
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Отправка…';
+      btn.disabled = true;
+      try {
+        const data = new FormData(form);
+        const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+        if (res.ok) {
+          form.querySelectorAll<HTMLElement>('.form-row, .field, .form-submit-row').forEach(el => el.style.display = 'none');
+          success.hidden = false;
+        } else {
+          throw new Error('send failed');
+        }
+      } catch {
+        btn.innerHTML = 'Ошибка. Пишите в Telegram';
+        btn.disabled = false;
+        setTimeout(() => { btn.innerHTML = originalText; }, 3000);
+      }
+    });
+  }
 </script>

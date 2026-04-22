@@ -1,73 +1,48 @@
 ---
-// src/components/FAQ.astro
-import { faqItems } from '../data/faq';
-
-const faqSchema = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": faqItems.map(item => ({
-    "@type": "Question",
-    "name": item.question,
-    "acceptedAnswer": { "@type": "Answer", "text": item.answer }
-  }))
-});
+// src/components/Faq.astro
 ---
-
-<section id="faq" class="py-24" style="background: var(--color-bg-deep);">
-  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-
-    <div class="mb-14 reveal">
-      <p class="text-xs font-semibold tracking-widest uppercase mb-3" style="color: var(--color-primary);">FAQ</p>
-      <h2 class="text-3xl sm:text-4xl font-black" style="color: var(--color-text);">Частые вопросы</h2>
+<section class="section" id="faq">
+  <div class="wrap">
+    <div class="section-head reveal" data-reveal>
+      <div class="section-eyebrow"><span class="num">06</span><span>FAQ</span></div>
+      <h2 class="section-title">Что&nbsp;обычно<br/><em>спрашивают</em></h2>
     </div>
 
-    <div class="flex flex-col gap-3">
-      {faqItems.map(item => (
-        <div class="reveal faq-item rounded-xl overflow-hidden"
-          style="background: var(--color-bg-card); border: 1px solid rgba(255,255,255,0.07);">
-          <button
-            class="faq-trigger w-full flex items-center justify-between gap-4 p-5 text-left"
-            aria-expanded="false"
-          >
-            <span class="text-sm font-semibold" style="color: var(--color-text);">{item.question}</span>
-            <svg class="faq-icon shrink-0 transition-transform duration-300"
-              xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
-              fill="none" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14"/><path d="M12 5v14"/>
-            </svg>
-          </button>
-          <div class="faq-body overflow-hidden" style="max-height: 0; transition: max-height 0.35s ease;">
-            <p class="px-5 pb-5 text-sm leading-relaxed" style="color: var(--color-text-secondary);">{item.answer}</p>
-          </div>
-        </div>
-      ))}
+    <div class="faq-list reveal" data-reveal>
+      <div class="faq-item">
+        <button class="faq-q">Сколько стоит запустить AI-бота? <span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></button>
+        <div class="faq-a">От 49 000 ₽ за&nbsp;простого бота на&nbsp;одну соцсеть. Сложный ассистент с&nbsp;CRM и&nbsp;голосом — от&nbsp;150 000 ₽. Точную смету дадим после 30-минутного брифа.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Что если мне не&nbsp;понравится результат? <span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></button>
+        <div class="faq-a">Работаем по&nbsp;этапам. После прототипа (3–5 дней) вы&nbsp;решаете — продолжаем или останавливаемся. Если продолжаем и&nbsp;результат не&nbsp;устроит — дорабатываем бесплатно до&nbsp;согласованных KPI.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Подключитесь к&nbsp;моей CRM? <span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></button>
+        <div class="faq-a">Да. AmoCRM, Bitrix24, YClients, 1С, Google Sheets, Notion, Airtable — всё стандартно. Если у&nbsp;вас самописная — интеграция через API, обсудим отдельно.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Бот реально понимает клиентов, или это скрипт? <span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></button>
+        <div class="faq-a">Реально понимает. Под&nbsp;капотом —&nbsp;LLM (GPT-4o, Claude 3.5, Gemini). Бот держит контекст беседы, понимает опечатки, сленг, голосовые. Не&nbsp;«нажмите 1 для&nbsp;записи».</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Что будет, если AI ответит неправильно? <span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></button>
+        <div class="faq-a">Настраиваем «страховочные» сценарии — на&nbsp;сложных вопросах бот передаёт диалог живому сотруднику. Все диалоги логируются, раз в&nbsp;неделю разбираем ошибки и&nbsp;дообучаем модель.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Данные клиентов в&nbsp;безопасности? <span class="faq-toggle"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></span></button>
+        <div class="faq-a">Да. Храним данные в&nbsp;РФ, подписываем NDA, соответствие 152-ФЗ. По&nbsp;запросу — on-premise решение на&nbsp;ваших серверах.</div>
+      </div>
     </div>
-
   </div>
 </section>
 
-<script type="application/ld+json" set:html={faqSchema} />
-
 <script>
-  document.querySelectorAll('.faq-trigger').forEach(trigger => {
-    trigger.addEventListener('click', () => {
-      const item = trigger.closest('.faq-item')!;
-      const body = item.querySelector('.faq-body') as HTMLElement;
-      const icon = trigger.querySelector('.faq-icon') as SVGElement;
-      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-
-      document.querySelectorAll('.faq-trigger[aria-expanded="true"]').forEach(other => {
-        if (other === trigger) return;
-        other.setAttribute('aria-expanded', 'false');
-        const otherBody = other.closest('.faq-item')!.querySelector('.faq-body') as HTMLElement;
-        const otherIcon = other.querySelector('.faq-icon') as SVGElement;
-        otherBody.style.maxHeight = '0';
-        otherIcon.style.transform = '';
-      });
-
-      trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-      body.style.maxHeight = isOpen ? '0' : `${body.scrollHeight}px`;
-      icon.style.transform = isOpen ? '' : 'rotate(45deg)';
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q')!.addEventListener('click', () => {
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(x => x.classList.remove('open'));
+      if (!open) item.classList.add('open');
     });
   });
 </script>
