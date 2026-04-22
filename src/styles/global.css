@@ -340,20 +340,59 @@ h1.hero-title .outline {
 .why-desc { font-size: 13px; color: var(--ink-2); line-height: 1.5; }
 
 /* ————— COMPARE ————— */
-.compare { border: 1.5px solid var(--ink); border-radius: 24px; overflow: hidden; background: var(--card); }
-.compare-row { display: grid; grid-template-columns: 1.5fr 1fr 1fr; border-bottom: 1px solid var(--line); }
-.compare-row:last-child { border-bottom: none; }
-.compare-row > div { padding: 20px 24px; display: flex; align-items: center; font-size: 15px; }
+.compare-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 24px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.compare-scroll::-webkit-scrollbar { display: none; }
+
+.compare {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  min-width: 520px;
+  border: 1.5px solid var(--ink);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--card);
+}
+/* Строки — display:contents, чтобы ячейки попали в единую grid */
+.compare-row { display: contents; }
+
+/* Все ячейки */
+.compare-row > div {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  border-bottom: 1px solid var(--line);
+}
+.compare-row:last-child > div { border-bottom: none; }
+
+/* Заголовочная строка */
 .compare-row.header > div {
-  font-family: 'JetBrains Mono', monospace; font-size: 12px;
-  text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
   border-bottom: 1.5px solid var(--ink);
   background: var(--bg);
 }
 .compare-row.header .col-us { background: var(--ink); color: var(--bg); }
+
+/* Колонки */
 .compare-row .col-feature { font-weight: 500; border-right: 1px solid var(--line); }
-.compare-row .col-us { background: color-mix(in oklab, var(--lime) 18%, var(--card)); border-right: 1px solid var(--line); font-weight: 500; }
+.compare-row .col-us {
+  background: color-mix(in oklab, var(--lime) 18%, var(--card));
+  border-right: 1px solid var(--line);
+  font-weight: 500;
+}
 .compare-row .col-them { color: var(--muted); }
+
 .check, .cross { width: 18px; height: 18px; margin-right: 10px; flex-shrink: 0; }
 .check { color: var(--ink); }
 .cross { color: var(--muted); }
