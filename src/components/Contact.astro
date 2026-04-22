@@ -72,6 +72,9 @@ const TELEGRAM_URL = 'https://t.me/YOUR_USERNAME';
 </style>
 
 <script>
+  import emailjs from '@emailjs/browser';
+  import { validateContactForm } from '../lib/contact-validator';
+
   const form = document.getElementById('contact-form') as HTMLFormElement;
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const submitText = document.getElementById('submit-text')!;
@@ -89,26 +92,29 @@ const TELEGRAM_URL = 'https://t.me/YOUR_USERNAME';
       message: (form.elements.namedItem('message') as HTMLTextAreaElement).value.trim(),
     };
 
+    const validation = validateContactForm(data);
+    if (!validation.valid) {
+      errorEl.textContent = validation.error ?? 'Ошибка валидации';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+
     submitBtn.disabled = true;
     submitText.textContent = 'Отправляем...';
 
     try {
-      const res = await fetch(`${import.meta.env.BASE_URL}api/contact`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      const json = await res.json();
-      if (res.ok) {
-        form.reset();
-        successEl.classList.remove('hidden');
-        successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      } else {
-        errorEl.textContent = json.error ?? 'Произошла ошибка. Попробуйте ещё раз.';
-        errorEl.classList.remove('hidden');
-      }
-    } catch {
-      errorEl.textContent = 'Ошибка соединения. Напишите нам в Telegram.';
+      await emailjs.send(
+        import.meta.env.PUBLIC_EMAILJS_SERVICE_ID,
+        import.meta.env.PUBLIC_EMAILJS_TEMPLATE_ID,
+        { from_name: data.name, from_email: data.email, message: data.message },
+        { publicKey: import.meta.env.PUBLIC_EMAILJS_PUBLIC_KEY }
+      );
+      form.reset();
+      successEl.classList.remove('hidden');
+      successEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (err) {
+      console.error('[EmailJS] Error:', err);
+      errorEl.textContent = 'Ошибка отправки. Напишите нам в Telegram.';
       errorEl.classList.remove('hidden');
     } finally {
       submitBtn.disabled = false;
