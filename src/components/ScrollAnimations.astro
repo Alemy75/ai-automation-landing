@@ -1,0 +1,40 @@
+---
+// src/components/ScrollAnimations.astro
+---
+
+<script>
+  import gsap from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Reveal all .reveal elements on scroll
+  document.querySelectorAll<HTMLElement>('.reveal').forEach(el => {
+    gsap.fromTo(el,
+      { opacity: 0, y: 28 },
+      {
+        opacity: 1, y: 0, duration: 0.7, ease: 'power2.out',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      }
+    );
+  });
+
+  // Hero elements animate in on load
+  const heroSequence = [
+    { selector: '.hero-badge', delay: 0 },
+    { selector: '.hero-title', delay: 0.15 },
+    { selector: '.hero-subtitle', delay: 0.3 },
+    { selector: '.hero-ctas', delay: 0.45 },
+    { selector: '.hero-stats', delay: 0.6 },
+  ];
+
+  heroSequence.forEach(({ selector, delay }) => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+    el.classList.remove('reveal');
+    gsap.fromTo(el,
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out', delay }
+    );
+  });
+</script>
