@@ -330,6 +330,51 @@ h1.hero-title .outline {
   font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em;
 }
 
+.cases-disclaimer {
+  margin-top: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--muted); line-height: 1.6;
+  max-width: 720px;
+}
+
+/* ————— COOKIE BANNER ————— */
+.cookie-banner {
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: var(--ink); color: var(--bg);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 16px 0;
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.cookie-banner.visible { transform: translateY(0); }
+.cookie-banner-inner {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+  justify-content: space-between;
+}
+.cookie-banner-text {
+  font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.5;
+  flex: 1; min-width: 260px;
+}
+.cookie-banner-text a { color: var(--lime); text-decoration: underline; }
+.cookie-banner-actions { display: flex; gap: 10px; flex-shrink: 0; }
+.cookie-btn-accept {
+  background: var(--lime); color: var(--ink);
+  padding: 9px 20px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; border: none;
+  cursor: pointer; transition: background .2s, transform .2s;
+  font-family: inherit;
+}
+.cookie-btn-accept:hover { background: var(--lime-2); transform: translateY(-1px); }
+.cookie-btn-more {
+  background: transparent; color: rgba(255,255,255,0.65);
+  padding: 9px 20px; border-radius: 999px;
+  font-size: 13px; font-weight: 500; border: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer; transition: color .2s, border-color .2s;
+  font-family: inherit; text-decoration: none;
+  display: inline-flex; align-items: center;
+}
+.cookie-btn-more:hover { color: var(--bg); border-color: rgba(255,255,255,0.5); }
+
 /* ————— WHY ————— */
 .why { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
 /* Desktop: outer top/left borders per-item so they animate in with cards */

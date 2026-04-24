@@ -1,0 +1,35 @@
+---
+// src/components/CookieBanner.astro
+---
+<div class="cookie-banner" id="cookie-banner" role="region" aria-label="Уведомление о cookies">
+  <div class="wrap">
+    <div class="cookie-banner-inner">
+      <p class="cookie-banner-text">
+        Мы используем cookies и Яндекс.Метрику для анализа трафика и улучшения сайта.
+        Продолжая пользоваться сайтом, вы соглашаетесь с&nbsp;
+        <a href="/privacy" target="_blank">политикой конфиденциальности</a>.
+      </p>
+      <div class="cookie-banner-actions">
+        <button class="cookie-btn-accept" id="cookie-accept">Принять</button>
+        <a class="cookie-btn-more" href="/privacy" target="_blank">Подробнее</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const banner = document.getElementById('cookie-banner');
+  const STORAGE_KEY = 'ai_boost_cookie_consent';
+
+  if (banner) {
+    if (!localStorage.getItem(STORAGE_KEY)) {
+      // Small delay so the banner animates in after page load
+      setTimeout(() => banner.classList.add('visible'), 600);
+    }
+
+    document.getElementById('cookie-accept')?.addEventListener('click', () => {
+      localStorage.setItem(STORAGE_KEY, '1');
+      banner.classList.remove('visible');
+    });
+  }
+</script>
